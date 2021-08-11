@@ -8,11 +8,11 @@ using Harmony;
 
 namespace HardyGrass
 {
-    [HarmonyPatch(typeof(GameLocation))]
-    [HarmonyPatch("growWeedGrass", new Type[] { typeof(int) })]
+    //[HarmonyPatch(typeof(GameLocation))]
+    //[HarmonyPatch("growWeedGrass", new Type[] { typeof(int) })]
     public class GameLocation_growWeedGrass_Patch
     {
-        static bool Prefix(GameLocation __instance, int iterations)
+        internal static bool Prefix(GameLocation __instance, int iterations)
         {
             for (int i = 0; i < iterations; i++)
             {

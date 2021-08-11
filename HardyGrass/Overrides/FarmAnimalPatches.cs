@@ -6,8 +6,10 @@ using Harmony;
 
 namespace HardyGrass
 {
+    /*
     [HarmonyPatch(typeof(FarmAnimal))]
     [HarmonyPatch("grassEndPointFunction", new Type[] {typeof(PathNode), typeof(Point), typeof(GameLocation), typeof(Character)})]
+    */
     public class FarmAnimal_grassEndPointFunction_Patch
     {
         public static bool Prefix(ref bool __result, PathNode currentPoint, Point endPoint, GameLocation location, Character c)
@@ -29,8 +31,8 @@ namespace HardyGrass
         }
     }
 
-    [HarmonyPatch(typeof(FarmAnimal))]
-    [HarmonyPatch("Eat", new Type[] { typeof(GameLocation) })]
+    //[HarmonyPatch(typeof(FarmAnimal))]
+    //[HarmonyPatch("Eat", new Type[] { typeof(GameLocation) })]
     public class FarmAnimal_Eat_Patch
     {
         public static bool Prefix(FarmAnimal __instance, GameLocation location)

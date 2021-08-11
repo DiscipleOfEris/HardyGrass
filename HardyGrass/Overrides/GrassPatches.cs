@@ -8,11 +8,11 @@ using Harmony;
 
 namespace HardyGrass
 {
-    [HarmonyPatch(typeof(Grass))]
-    [HarmonyPatch("dayUpdate", new Type[] { typeof(GameLocation), typeof(Vector2) })]
+    //[HarmonyPatch(typeof(Grass))]
+    //[HarmonyPatch("dayUpdate", new Type[] { typeof(GameLocation), typeof(Vector2) })]
     public class Grass_dayUpdate_Patch
     {
-        static bool Prefix(Grass __instance, GameLocation environment, Vector2 tileLocation)
+        internal static bool Prefix(Grass __instance, GameLocation environment, Vector2 tileLocation)
         {
             if ((byte)__instance.grassType == 1 && !environment.GetSeasonForLocation().Equals("winter") && (int)__instance.numberOfWeeds < 4)
             {
@@ -24,11 +24,11 @@ namespace HardyGrass
         }
     }
 
-    [HarmonyPatch(typeof(Grass))]
-    [HarmonyPatch("reduceBy", new Type[] { typeof(int), typeof(Vector2), typeof(bool) })]
+    //[HarmonyPatch(typeof(Grass))]
+    //[HarmonyPatch("reduceBy", new Type[] { typeof(int), typeof(Vector2), typeof(bool) })]
     public class Grass_reduceBy_Patch
     {
-        static void Postfix(Grass __instance, ref bool __result)
+        internal static void Postfix(Grass __instance, ref bool __result)
         {
             __result = false;
 
@@ -41,11 +41,11 @@ namespace HardyGrass
         }
     }
 
-    [HarmonyPatch(typeof(Grass))]
-    [HarmonyPatch("doCollisionAction", new Type[] { typeof(Rectangle), typeof(int), typeof(Vector2), typeof(Character), typeof(GameLocation) })]
+    //[HarmonyPatch(typeof(Grass))]
+    //[HarmonyPatch("doCollisionAction", new Type[] { typeof(Rectangle), typeof(int), typeof(Vector2), typeof(Character), typeof(GameLocation) })]
     public class Grass_doCollisionAction_Patch
     {
-        static bool Prefix(Grass __instance, float ___maxShake, float ___shakeRotation, Rectangle positionOfCollider, int speedOfCollision, Vector2 tileLocation, Character who, GameLocation location)
+        internal static bool Prefix(Grass __instance, float ___maxShake, float ___shakeRotation, Rectangle positionOfCollider, int speedOfCollision, Vector2 tileLocation, Character who, GameLocation location)
         {
             if (location != Game1.currentLocation)
             {
@@ -79,17 +79,17 @@ namespace HardyGrass
         }
     }
 
-    [HarmonyPatch(typeof(Grass))]
-    [HarmonyPatch("performToolAction", new Type[] { typeof(Tool), typeof(int), typeof(Vector2), typeof(GameLocation)})]
+    //[HarmonyPatch(typeof(Grass))]
+    //[HarmonyPatch("performToolAction", new Type[] { typeof(Tool), typeof(int), typeof(Vector2), typeof(GameLocation)})]
     public class Grass_performToolAction_Patch
     {
-        static bool Prefix(Grass __instance, ref bool __result, Tool t, int explosion, Vector2 tileLocation, GameLocation location)
+        internal static bool Prefix(Grass __instance, ref bool __result, Tool t, int explosion, Vector2 tileLocation, GameLocation location)
         {
             __result = false;
             return (int)__instance.numberOfWeeds > 0;
         }
 
-        static void Postfix(Grass __instance, ref bool __result, Tool t, int explosion, Vector2 tileLocation, GameLocation location)
+        internal static void Postfix(Grass __instance, ref bool __result, Tool t, int explosion, Vector2 tileLocation, GameLocation location)
         {
             __instance.numberOfWeeds.Value = Math.Max(0, (int)__instance.numberOfWeeds);
 
@@ -151,11 +151,11 @@ namespace HardyGrass
         }
     }
 
-    [HarmonyPatch(typeof(Grass))]
-    [HarmonyPatch("draw", new Type[] { typeof(SpriteBatch), typeof(Vector2) })]
+    //[HarmonyPatch(typeof(Grass))]
+    //[HarmonyPatch("draw", new Type[] { typeof(SpriteBatch), typeof(Vector2) })]
     public class Grass_draw_Patch
     {
-        static bool Prefix(Grass __instance, SpriteBatch spriteBatch, Vector2 tileLocation, int[] ___whichWeed, int[] ___offset1, int[] ___offset2, int[] ___offset3, int[] ___offset4, bool[] ___flip, double[] ___shakeRandom, float ___shakeRotation)
+        internal static bool Prefix(Grass __instance, SpriteBatch spriteBatch, Vector2 tileLocation, int[] ___whichWeed, int[] ___offset1, int[] ___offset2, int[] ___offset3, int[] ___offset4, bool[] ___flip, double[] ___shakeRandom, float ___shakeRotation)
         {
             for (int i = 0; i < 4; i++)
             {
