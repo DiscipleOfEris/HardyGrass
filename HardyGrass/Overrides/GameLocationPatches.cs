@@ -4,12 +4,10 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using Location = xTile.Dimensions.Location;
-using Harmony;
+using HarmonyLib;
 
 namespace HardyGrass
 {
-    //[HarmonyPatch(typeof(GameLocation))]
-    //[HarmonyPatch("growWeedGrass", new Type[] { typeof(int) })]
     public class GameLocation_growWeedGrass_Patch
     {
         internal static bool Prefix(GameLocation __instance, int iterations)

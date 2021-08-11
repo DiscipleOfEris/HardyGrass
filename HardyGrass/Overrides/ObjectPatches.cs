@@ -2,12 +2,10 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.TerrainFeatures;
-using Harmony;
+using HarmonyLib;
 
 namespace HardyGrass
 {
-    //[HarmonyPatch(typeof(StardewValley.Object))]
-    //[HarmonyPatch("placementAction", new Type[] { typeof(GameLocation), typeof(int), typeof(int), typeof(Farmer) })]
     public class Object_placementAction_Patch
     {
         public static bool Prefix(StardewValley.Object __instance, ref bool __result, GameLocation location, int x, int y, Farmer who)
@@ -38,8 +36,6 @@ namespace HardyGrass
         }
     }
 
-    //[HarmonyPatch(typeof(StardewValley.Object))]
-    //[HarmonyPatch("isPlaceable", new Type[] { })]
     public class Object_isPlaceable_Patch
     {
         public static void Postfix(StardewValley.Object __instance, ref bool __result)
@@ -52,8 +48,6 @@ namespace HardyGrass
         }
     }
 
-    //[HarmonyPatch(typeof(StardewValley.Object))]
-    //[HarmonyPatch("isPassable", new Type[] { })]
     public class Object_isPassable_Patch
     {
         public static void Postfix(StardewValley.Object __instance, ref bool __result)
